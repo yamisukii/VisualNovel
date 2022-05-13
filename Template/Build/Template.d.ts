@@ -56,10 +56,12 @@ declare namespace VisualNovel {
             };
         };
     };
+    let items: any;
 }
 declare namespace VisualNovel {
     let gameMenu: ƒS.Menu;
     let menuIsOpen: boolean;
+    let inventory: ƒS.Inventory;
     let dataForSave: {
         nameProtaginst: string;
         score: number;

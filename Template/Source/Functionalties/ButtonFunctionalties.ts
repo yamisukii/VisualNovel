@@ -1,6 +1,7 @@
 namespace VisualNovel {
   export let gameMenu: ƒS.Menu;
   export let menuIsOpen: boolean = true;
+  export let inventory : ƒS.Inventory;
 
   // **** DATEN DIE GESPEICHERT WERDEN SOLLEN ****
   export let dataForSave = {
@@ -51,6 +52,14 @@ namespace VisualNovel {
       case ƒ.KEYBOARD_CODE.F9:
         console.log("Load");
         await ƒS.Progress.load();
+        break;
+      case ƒ.KEYBOARD_CODE.I:
+        console.log("Open Inventory");
+        await ƒS.Inventory.open();
+      case ƒ.KEYBOARD_CODE.ESC:
+        console.log("Close Inventory");
+        ƒS.Inventory.close();
+        // ƒS.Inventory.close();
         break;
       case ƒ.KEYBOARD_CODE.M:
         if (menuIsOpen) {

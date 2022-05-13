@@ -50,6 +50,10 @@ dialog[type="splash"] > p {
   background-color: lightcoral;
 }
 
+dialog[type="splash"]{
+  background-size: contain;
+  width: 100%;
+}
 speech {
   position: absolute;
   bottom: 0px;

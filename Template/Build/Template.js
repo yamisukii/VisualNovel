@@ -65,13 +65,45 @@ var VisualNovel;
             }
         }
     };
+    VisualNovel.items = {
+        a: {
+            name: "DeathNote",
+            description: "Schreib nicht dein eigenen Namen rein! ",
+            image: "/Template/Images/Items/book.png",
+            // static: true
+        },
+        b: {
+            name: "DeathNote",
+            description: "Schreib nicht dein eigenen Namen rein! ",
+            image: "/Template/Images/Items/book.png",
+            static: true
+        },
+        class: {
+            name: "DeathNote",
+            description: "Schreib nicht dein eigenen Namen rein! ",
+            image: "/Template/Images/Items/book.png",
+            static: true
+        },
+        d: {
+            name: "DeathNote",
+            description: "Schreib nicht dein eigenen Namen rein! ",
+            image: "/Template/Images/Items/book.png",
+            static: true
+        },
+        e: {
+            name: "DeathNote",
+            description: "Schreib nicht dein eigenen Namen rein! ",
+            image: "/Template/Images/Items/book.png",
+            static: true
+        }
+    };
     window.addEventListener("load", start);
     function start(_event) {
         VisualNovel.gameMenu = VisualNovel.ƒS.Menu.create(VisualNovel.inGameMenuButtons, VisualNovel.buttonFunctionalities, "gameMenuCSSclass");
         VisualNovel.buttonFunctionalities("Close");
         let scenes = [
             { scene: VisualNovel.Intro, name: "First Scene" },
-            { scene: VisualNovel.HowToMakeChoices, name: 'Choices' },
+            // { scene: HowToMakeChoices, name: 'Choices' },
             // { scene: HowToText, name: "Text Scene" }
         ];
         // start the sequence
@@ -128,6 +160,14 @@ var VisualNovel;
             case VisualNovel.ƒ.KEYBOARD_CODE.F9:
                 console.log("Load");
                 await VisualNovel.ƒS.Progress.load();
+                break;
+            case VisualNovel.ƒ.KEYBOARD_CODE.I:
+                console.log("Open Inventory");
+                await VisualNovel.ƒS.Inventory.open();
+            case VisualNovel.ƒ.KEYBOARD_CODE.ESC:
+                console.log("Close Inventory");
+                VisualNovel.ƒS.Inventory.close();
+                // ƒS.Inventory.close();
                 break;
             case VisualNovel.ƒ.KEYBOARD_CODE.M:
                 if (VisualNovel.menuIsOpen) {
@@ -215,12 +255,16 @@ var VisualNovel;
                 T0002: ""
             },
             Peter: {
-                T0000: "Hurensohn!!",
+                T0000: "Baka!!",
                 T0001: "Kleiner Scherz, willkommen zum Tutorial!"
             }
         };
         // ƒS.Sound.fade(sound.dystopian, 2, 7, true);
         VisualNovel.ƒS.Speech.hide();
+        for (let i = 0; i < 6; i++) {
+            VisualNovel.ƒS.Inventory.add(VisualNovel.items.a);
+        }
+        console.log();
         await VisualNovel.ƒS.Location.show(VisualNovel.locations.nightStreets);
         await VisualNovel.ƒS.update(VisualNovel.transitions.puzzle.duration, VisualNovel.transitions.puzzle.alpha, VisualNovel.transitions.puzzle.edge);
         await VisualNovel.ƒS.Character.show(VisualNovel.characters.peter, VisualNovel.characters.peter.pose.walk, VisualNovel.ƒS.positionPercent(60, 160));

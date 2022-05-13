@@ -70,6 +70,42 @@ namespace VisualNovel {
     }
   };
 
+  export let items: any = {
+    a: {
+      name: "DeathNote",
+      description: "Schreib nicht dein eigenen Namen rein! ",
+      image: "/Template/Images/Items/book.png",
+      // static: true
+    },
+    b: {
+      name: "DeathNote",
+      description: "Schreib nicht dein eigenen Namen rein! ",
+      image: "/Template/Images/Items/book.png",
+      static: true
+    },
+    class: {
+      name: "DeathNote",
+      description: "Schreib nicht dein eigenen Namen rein! ",
+      image: "/Template/Images/Items/book.png",
+      static: true
+    },
+    d: {
+      name: "DeathNote",
+      description: "Schreib nicht dein eigenen Namen rein! ",
+      image: "/Template/Images/Items/book.png",
+      static: true
+    },
+    e: {
+      name: "DeathNote",
+      description: "Schreib nicht dein eigenen Namen rein! ",
+      image: "/Template/Images/Items/book.png",
+      static: true
+    }
+  }
+
+
+
+
 
   window.addEventListener("load", start);
   function start(_event: Event): void {
@@ -77,7 +113,7 @@ namespace VisualNovel {
     buttonFunctionalities("Close");
     let scenes: ƒS.Scenes = [
       { scene: Intro, name: "First Scene" },
-      { scene: HowToMakeChoices, name: 'Choices' },
+      // { scene: HowToMakeChoices, name: 'Choices' },
       // { scene: HowToText, name: "Text Scene" }
     ];
 

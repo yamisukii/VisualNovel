@@ -9,13 +9,17 @@ namespace VisualNovel {
         T0002: ""
       },
       Peter: {
-        T0000: "Hurensohn!!",
+        T0000: "Baka!!",
         T0001: "Kleiner Scherz, willkommen zum Tutorial!"
       }
     };
 
     // ƒS.Sound.fade(sound.dystopian, 2, 7, true);
     ƒS.Speech.hide();
+    for (let i = 0; i < 6; i++) {
+      ƒS.Inventory.add(items.a);
+    }
+    console.log()
     await ƒS.Location.show(locations.nightStreets);
     await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
     await ƒS.Character.show(characters.peter, characters.peter.pose.walk, ƒS.positionPercent(60, 160));
