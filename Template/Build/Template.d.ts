@@ -10,9 +10,18 @@ declare namespace VisualNovel {
     };
     let sound: {
         nightclub: string;
+        dystopian: string;
     };
     let locations: {
         nightpark: {
+            name: string;
+            background: string;
+        };
+        starry: {
+            name: string;
+            background: string;
+        };
+        nightStreets: {
             name: string;
             background: string;
         };
@@ -39,6 +48,13 @@ declare namespace VisualNovel {
                 upset: string;
             };
         };
+        peter: {
+            name: string;
+            origin: ƒ.ORIGIN2D;
+            pose: {
+                walk: string;
+            };
+        };
     };
 }
 declare namespace VisualNovel {
@@ -63,5 +79,5 @@ declare namespace VisualNovel {
     function HowToMakeChoices(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
-    function HowToText(): ƒS.SceneReturn;
+    function Intro(): ƒS.SceneReturn;
 }

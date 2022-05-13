@@ -15,7 +15,8 @@ var VisualNovel;
     };
     VisualNovel.sound = {
         // themes
-        nightclub: "/Template/Audio/Nightclub.ogg"
+        nightclub: "/Template/Audio/Nightclub.ogg",
+        dystopian: "/Template/Audio/Dystopian.ogg"
         // SFX
         // click: "Pfad"
     };
@@ -24,11 +25,15 @@ var VisualNovel;
             name: "Nightpark",
             // background: "/Template/Images/Backgrounds/starry.gif"
             background: "/Template/Images/Backgrounds/Bedroom_Night.png"
+        },
+        starry: {
+            name: "Starry",
+            background: "/Template/Images/Backgrounds/bg_city_sunset.png"
+        },
+        nightStreets: {
+            name: "Starry",
+            background: "/Template/Images/Backgrounds/nightStreets.jpg"
         }
-        // starry: {
-        //   name: "Starry",
-        //   background: "Pfad"
-        // }
     };
     VisualNovel.characters = {
         narrator: {
@@ -51,6 +56,13 @@ var VisualNovel;
                 happy: "/Template/Images/Characters/kohana_happy.png",
                 upset: "/Template/Images/Characters/kohana_upset.png"
             }
+        },
+        peter: {
+            name: "Peter",
+            origin: VisualNovel.ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                walk: "/Template/Images/Characters/peter.png",
+            }
         }
     };
     window.addEventListener("load", start);
@@ -58,8 +70,8 @@ var VisualNovel;
         VisualNovel.gameMenu = VisualNovel.ƒS.Menu.create(VisualNovel.inGameMenuButtons, VisualNovel.buttonFunctionalities, "gameMenuCSSclass");
         VisualNovel.buttonFunctionalities("Close");
         let scenes = [
-            { scene: VisualNovel.HowToText, name: "Text Scene" },
-            // { scene: HowToMakeChoices, name: 'Choices' },
+            { scene: VisualNovel.Intro, name: "First Scene" },
+            { scene: VisualNovel.HowToMakeChoices, name: 'Choices' },
             // { scene: HowToText, name: "Text Scene" }
         ];
         // start the sequence
@@ -150,7 +162,8 @@ var VisualNovel;
                 T0001: "Schön, dass du dabei warst!"
             }
         };
-        VisualNovel.ƒS.Sound.fade(VisualNovel.sound.nightclub, 1, 2, true);
+        // ƒS.Sound.fade(sound.dystopian, 3, 5, true);
+        // ƒS.Sound.fade(sound.nightclub, 0, 5);
         VisualNovel.ƒS.Speech.hide();
         await VisualNovel.ƒS.Location.show(VisualNovel.locations.nightpark);
         await VisualNovel.ƒS.update(VisualNovel.transitions.puzzle.duration, VisualNovel.transitions.puzzle.alpha, VisualNovel.transitions.puzzle.edge);
@@ -161,7 +174,7 @@ var VisualNovel;
         await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.aisaka, text.Aisaka.T0000);
         VisualNovel.ƒS.Speech.clear();
         VisualNovel.ƒS.Speech.hide();
-        await VisualNovel.ƒS.update(3);
+        await VisualNovel.ƒS.update();
         let firstDialogueElementAnswers = {
             iSayOk: "Okay.",
             iSayYes: "Ja.",
@@ -176,8 +189,9 @@ var VisualNovel;
                 break;
             case firstDialogueElementAnswers.iSayYes:
                 // continue path here
-                await VisualNovel.ƒS.Character.show(VisualNovel.characters.aisaka, VisualNovel.characters.aisaka.pose.happy, VisualNovel.ƒS.positions.bottomcenter);
-                VisualNovel.ƒS.Character.hide(VisualNovel.characters.aisaka);
+                await VisualNovel.ƒS.Character.show(VisualNovel.characters.kohana, VisualNovel.characters.kohana.pose.happy, VisualNovel.ƒS.positions.bottomcenter);
+                // ƒS.Character.hide(characters.aisaka);
+                await VisualNovel.ƒS.update(3);
                 break;
             case firstDialogueElementAnswers.iSayNo:
                 // continue path here
@@ -192,7 +206,7 @@ var VisualNovel;
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {
-    async function HowToText() {
+    async function Intro() {
         console.log("Let's text!");
         let text = {
             Narrator: {
@@ -200,24 +214,25 @@ var VisualNovel;
                 T0001: "",
                 T0002: ""
             },
-            Aisaka: {
+            Peter: {
                 T0000: "Hurensohn!!",
                 T0001: "Kleiner Scherz, willkommen zum Tutorial!"
             }
         };
-        VisualNovel.ƒS.Sound.fade(VisualNovel.sound.nightclub, 5, 100, true);
+        // ƒS.Sound.fade(sound.dystopian, 2, 7, true);
         VisualNovel.ƒS.Speech.hide();
-        await VisualNovel.ƒS.Location.show(VisualNovel.locations.nightpark);
+        await VisualNovel.ƒS.Location.show(VisualNovel.locations.nightStreets);
         await VisualNovel.ƒS.update(VisualNovel.transitions.puzzle.duration, VisualNovel.transitions.puzzle.alpha, VisualNovel.transitions.puzzle.edge);
-        await VisualNovel.ƒS.Character.show(VisualNovel.characters.aisaka, VisualNovel.characters.aisaka.pose.happy, VisualNovel.ƒS.positions.bottomcenter);
+        await VisualNovel.ƒS.Character.show(VisualNovel.characters.peter, VisualNovel.characters.peter.pose.walk, VisualNovel.ƒS.positionPercent(60, 160));
+        // await ƒS.Character.
         await VisualNovel.ƒS.update(2);
-        // await ƒS.Character.show(characters.aisaka, characters.aisaka.pose.happy, ƒS.positionPercent(170, 10));
-        // ƒS.Character.hide(characters.aisaka);
+        // await ƒS.Character.show(characters.Peter, characters.Peter.pose.happy, ƒS.positionPercent(170, 10));
+        VisualNovel.ƒS.Character.hide(VisualNovel.characters.peter);
         // ƒS.Character.hideAll();
-        await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.aisaka, text.Aisaka.T0000);
-        VisualNovel.ƒS.Speech.clear();
+        await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.peter, text.Peter.T0000);
+        await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.peter, text.Peter.T0001);
         VisualNovel.ƒS.Speech.hide();
     }
-    VisualNovel.HowToText = HowToText;
+    VisualNovel.Intro = Intro;
 })(VisualNovel || (VisualNovel = {}));
 //# sourceMappingURL=Template.js.map

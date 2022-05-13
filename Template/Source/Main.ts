@@ -16,7 +16,8 @@ namespace VisualNovel {
 
   export let sound = {
     // themes
-    nightclub: "/Template/Audio/Nightclub.ogg"
+    nightclub: "/Template/Audio/Nightclub.ogg",
+    dystopian: "/Template/Audio/Dystopian.ogg"
 
     // SFX
     // click: "Pfad"
@@ -27,11 +28,15 @@ namespace VisualNovel {
       name: "Nightpark",
       // background: "/Template/Images/Backgrounds/starry.gif"
       background: "/Template/Images/Backgrounds/Bedroom_Night.png"
+    },
+    starry: {
+      name: "Starry",
+      background: "/Template/Images/Backgrounds/bg_city_sunset.png"
+    },
+    nightStreets: {
+      name: "Starry",
+      background: "/Template/Images/Backgrounds/nightStreets.jpg"
     }
-    // starry: {
-    //   name: "Starry",
-    //   background: "Pfad"
-    // }
   };
 
   export let characters = {
@@ -55,22 +60,29 @@ namespace VisualNovel {
         happy: "/Template/Images/Characters/kohana_happy.png",
         upset: "/Template/Images/Characters/kohana_upset.png"
       }
+    },
+    peter: {
+      name: "Peter",
+      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      pose: {
+        walk: "/Template/Images/Characters/peter.png",
+      }
     }
   };
+
 
   window.addEventListener("load", start);
   function start(_event: Event): void {
     gameMenu = ƒS.Menu.create(inGameMenuButtons, buttonFunctionalities, "gameMenuCSSclass");
     buttonFunctionalities("Close");
     let scenes: ƒS.Scenes = [
-      { scene: HowToText, name: "Text Scene" },
-      // { scene: HowToMakeChoices, name: 'Choices' },
+      { scene: Intro, name: "First Scene" },
+      { scene: HowToMakeChoices, name: 'Choices' },
       // { scene: HowToText, name: "Text Scene" }
     ];
 
     // start the sequence
     ƒS.Progress.go(scenes);
   }
-
 
 }

@@ -15,7 +15,8 @@ namespace VisualNovel {
     };
 
 
-    ƒS.Sound.fade(sound.nightclub, 1, 2, true);
+    // ƒS.Sound.fade(sound.dystopian, 3, 5, true);
+    // ƒS.Sound.fade(sound.nightclub, 0, 5);
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.nightpark);
     await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
@@ -26,11 +27,11 @@ namespace VisualNovel {
     await ƒS.Speech.tell(characters.aisaka, text.Aisaka.T0000);
     ƒS.Speech.clear();
     ƒS.Speech.hide();
-    await ƒS.update(3);
+    await ƒS.update();
 
 
-   
-    
+
+
     let firstDialogueElementAnswers = {
       iSayOk: "Okay.",
       iSayYes: "Ja.",
@@ -47,8 +48,10 @@ namespace VisualNovel {
         break;
       case firstDialogueElementAnswers.iSayYes:
         // continue path here
-        await ƒS.Character.show(characters.aisaka, characters.aisaka.pose.happy, ƒS.positions.bottomcenter);
-        ƒS.Character.hide(characters.aisaka);
+        await ƒS.Character.show(characters.kohana, characters.kohana.pose.happy, ƒS.positions.bottomcenter);
+        // ƒS.Character.hide(characters.aisaka);
+        await ƒS.update(3);
+
         break;
       case firstDialogueElementAnswers.iSayNo:
         // continue path here
