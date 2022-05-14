@@ -5,15 +5,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="Template.css">
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+  <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" /> 
+  
   <script src="Fudge/FudgeCore.js"></script>
   <script src="FudgeStory/FudgeStory.js"></script>
   <script src="./Build/Template.js"></script>
+  <script  src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   <title>Gamename</title>
   <splash src="Images/Splash.png" />
 </head>
 
 <body>
-  <scene>
+  <scene id="form">
 
     <dialog type="splash" open>
       <img id="FudgeStoryLogo" theme="dark" /> <!-- use "light" or "dark" -->
@@ -22,7 +26,7 @@
       </p>
     </dialog>
 
-    <canvas></canvas>
+    <canvas ></canvas>
 
 
     <speech>
@@ -30,8 +34,8 @@
       <content>The text the character says</content>
     </speech>
 
-    <dialog type="inventory">
-      <button type="button">Close</button>
+    <dialog type="inventory" >
+      <button type="button" class="nes-btn is-warning">Close</button>
       <ul></ul>
     </dialog>
 
@@ -41,5 +45,4 @@
 
   </scene>
 </body>
-
 </html>

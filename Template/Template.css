@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   width: 100vw;
   height: 100vh;
   margin: 0px;
@@ -25,15 +26,25 @@ canvas {
 }
 
 /* Splashscreen */
+video{
+  /* background-image: url("https://64.media.tumblr.com/f9d953e995d567dda62a113f54a72da0/dbf1fe44cc18dc7a-60/s500x750/0245307c25547c50b16923ce4fb28297ad34d828.gifv"); */
+  background-repeat: repeat;
+  background-size: contain;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  /* height: auto; */
+}
+
 dialog[type="splash"] {
-  background-image: url("Images/Backgrounds/starry.gif");
+  background-image: url("https://i.giphy.com/media/uKWBNet3fFTP9ZDZIg/giphy.webp");
   background-repeat: repeat;
   background-size: contain;
   width: 100%;
   /* height: auto; */
 }
 
-dialog[type="splash"] > p {
+dialog[type="splash"]>p {
   font-size: 2vmin;
   color: white;
   text-align: center;
@@ -50,10 +61,11 @@ dialog[type="splash"] > p {
   background-color: lightcoral;
 }
 
-dialog[type="splash"]{
+dialog[type="splash"] {
   background-size: contain;
   width: 100%;
 }
+
 speech {
   position: absolute;
   bottom: 0px;

@@ -27,7 +27,7 @@ namespace VisualNovel {
     nightpark: {
       name: "Nightpark",
       // background: "/Template/Images/Backgrounds/starry.gif"
-      background: "/Template/Images/Backgrounds/Bedroom_Night.png"
+      background: "/Template/Images/Backgrounds/Bedroom.png"
     },
     starry: {
       name: "Starry",
@@ -113,8 +113,8 @@ namespace VisualNovel {
     buttonFunctionalities("Close");
     let scenes: ƒS.Scenes = [
       { scene: Intro, name: "First Scene" },
-      // { scene: HowToMakeChoices, name: 'Choices' },
-      // { scene: HowToText, name: "Text Scene" }
+      { scene: GifAnimator, name: "Text Scene" },
+      { scene: HowToMakeChoices, name: 'Choices' },
     ];
 
     // start the sequence

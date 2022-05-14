@@ -24,7 +24,7 @@ var VisualNovel;
         nightpark: {
             name: "Nightpark",
             // background: "/Template/Images/Backgrounds/starry.gif"
-            background: "/Template/Images/Backgrounds/Bedroom_Night.png"
+            background: "/Template/Images/Backgrounds/Bedroom.png"
         },
         starry: {
             name: "Starry",
@@ -103,8 +103,8 @@ var VisualNovel;
         VisualNovel.buttonFunctionalities("Close");
         let scenes = [
             { scene: VisualNovel.Intro, name: "First Scene" },
-            // { scene: HowToMakeChoices, name: 'Choices' },
-            // { scene: HowToText, name: "Text Scene" }
+            { scene: VisualNovel.GifAnimator, name: "Text Scene" },
+            { scene: VisualNovel.HowToMakeChoices, name: 'Choices' },
         ];
         // start the sequence
         VisualNovel.ƒS.Progress.go(scenes);
@@ -278,5 +278,29 @@ var VisualNovel;
         VisualNovel.ƒS.Speech.hide();
     }
     VisualNovel.Intro = Intro;
+})(VisualNovel || (VisualNovel = {}));
+var VisualNovel;
+(function (VisualNovel) {
+    async function GifAnimator() {
+        VisualNovel.ƒS.Speech.hide();
+        await VisualNovel.ƒS.Location.show(VisualNovel.locations.nightpark);
+        await VisualNovel.ƒS.update();
+        let scene = document.getElementById("form");
+        // let image: HTMLElement = <HTMLElement>document.createElement("image");
+        // image.setAttribute("type", "splash");
+        let video = document.createElement("video");
+        video.autoplay = true;
+        video.loop = true;
+        video.load();
+        let src = document.createElement("source");
+        src.setAttribute("src", "/Template/Videos/Space.mp4");
+        src.setAttribute("type", "video/mp4");
+        video.appendChild(src);
+        //  video.setAttribute("autolay");
+        scene.prepend(video);
+        await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.peter, "text.Peter.T0000");
+        video.remove();
+    }
+    VisualNovel.GifAnimator = GifAnimator;
 })(VisualNovel || (VisualNovel = {}));
 //# sourceMappingURL=Template.js.map

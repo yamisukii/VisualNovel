@@ -83,3 +83,6 @@ declare namespace VisualNovel {
 declare namespace VisualNovel {
     function Intro(): ƒS.SceneReturn;
 }
+declare namespace VisualNovel {
+    function GifAnimator(): ƒS.SceneReturn;
+}
