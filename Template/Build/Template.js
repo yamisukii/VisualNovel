@@ -102,7 +102,7 @@ var VisualNovel;
         VisualNovel.gameMenu = VisualNovel.ƒS.Menu.create(VisualNovel.inGameMenuButtons, VisualNovel.buttonFunctionalities, "gameMenuCSSclass");
         VisualNovel.buttonFunctionalities("Close");
         let scenes = [
-            { scene: VisualNovel.Intro, name: "First Scene" },
+            // { scene: Intro, name: "First Scene" },
             { scene: VisualNovel.GifAnimator, name: "Text Scene" },
             { scene: VisualNovel.HowToMakeChoices, name: 'Choices' },
         ];
@@ -186,6 +186,81 @@ var VisualNovel;
     VisualNovel.hndKeyPress = hndKeyPress;
     VisualNovel.uiElement = document.querySelector("[type=interface]");
     VisualNovel.dataForSave = VisualNovel.ƒS.Progress.setData(VisualNovel.dataForSave, VisualNovel.uiElement);
+})(VisualNovel || (VisualNovel = {}));
+var VisualNovel;
+(function (VisualNovel) {
+    /**
+    * For using this class:
+    * 1.
+    * --> give CanvasElement in HTML 'id = "screen"'
+    * --> give sceneElemen in HTML 'id = "scene"'
+    *
+    * 2. create new Instance with the videoPath
+    *  --> let video: VideoCreator = new VideoCreator("_videoPath");
+    *
+    * 3. start the Instance with
+    *  --> video.start()
+    *
+    * 4. insert some Text with
+    * -->  await ƒS.Speech.tell()
+    * otherwise it will skip the video
+    *
+    * 5. remove the videoElemen after the line frome step 4
+    * --> video.remove()
+    */
+    class VideoCreator {
+        scene;
+        video;
+        src;
+        canvas;
+        constructor(_url) {
+            this.scene = document.getElementById("scene");
+            this.video = document.createElement("video");
+            this.src = document.createElement("source");
+            this.canvas = document.getElementById("screen");
+            this.set(_url);
+        }
+        set(_url) {
+            this.src.setAttribute("src", _url);
+            this.src.setAttribute("type", "video/mp4");
+        }
+        buildPath() {
+            this.video.appendChild(this.src);
+            this.scene.prepend(this.video);
+        }
+        changeCanvasStyle() {
+            this.canvas.style.position = "fixed";
+        }
+        /**
+         * enable the sound again
+         */
+        soundOn() {
+            this.video.muted = false;
+        }
+        /**
+         *By deafult autoplay and sound muted
+         */
+        configVideo(_loop) {
+            this.video.autoplay = true;
+            this.video.muted = true;
+            if (_loop == null) {
+                this.video.loop = true;
+            }
+            else
+                this.video.loop = _loop;
+            this.video.load();
+        }
+        start() {
+            this.buildPath();
+            this.configVideo();
+            this.changeCanvasStyle();
+        }
+        remove() {
+            this.video.remove();
+            this.canvas.style.removeProperty("position");
+        }
+    }
+    VisualNovel.VideoCreator = VideoCreator;
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {
@@ -282,22 +357,8 @@ var VisualNovel;
 var VisualNovel;
 (function (VisualNovel) {
     async function GifAnimator() {
-        VisualNovel.ƒS.Speech.hide();
-        await VisualNovel.ƒS.Location.show(VisualNovel.locations.nightpark);
-        await VisualNovel.ƒS.update();
-        let scene = document.getElementById("form");
-        // let image: HTMLElement = <HTMLElement>document.createElement("image");
-        // image.setAttribute("type", "splash");
-        let video = document.createElement("video");
-        video.autoplay = true;
-        video.loop = true;
-        video.load();
-        let src = document.createElement("source");
-        src.setAttribute("src", "/Template/Videos/Space.mp4");
-        src.setAttribute("type", "video/mp4");
-        video.appendChild(src);
-        //  video.setAttribute("autolay");
-        scene.prepend(video);
+        let video = new VisualNovel.VideoCreator("/Template/Videos/Butterfly.mp4");
+        video.start();
         await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.peter, "text.Peter.T0000");
         video.remove();
     }

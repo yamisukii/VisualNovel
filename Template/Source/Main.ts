@@ -112,7 +112,7 @@ namespace VisualNovel {
     gameMenu = ƒS.Menu.create(inGameMenuButtons, buttonFunctionalities, "gameMenuCSSclass");
     buttonFunctionalities("Close");
     let scenes: ƒS.Scenes = [
-      { scene: Intro, name: "First Scene" },
+      // { scene: Intro, name: "First Scene" },
       { scene: GifAnimator, name: "Text Scene" },
       { scene: HowToMakeChoices, name: 'Choices' },
     ];
