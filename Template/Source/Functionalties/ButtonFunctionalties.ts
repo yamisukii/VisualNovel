@@ -6,7 +6,8 @@ namespace VisualNovel {
   // **** DATEN DIE GESPEICHERT WERDEN SOLLEN ****
   export let dataForSave = {
     nameProtaginst: "",
-    score: 0
+    score: 0,
+    revengeIsPicked: false,
   };
 
   // **** CREDITS ****

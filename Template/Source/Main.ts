@@ -24,10 +24,9 @@ namespace VisualNovel {
   };
 
   export let locations = {
-    nightpark: {
-      name: "Nightpark",
-      // background: "/Template/Images/Backgrounds/starry.gif"
-      background: "/Template/Images/Backgrounds/Bedroom.png"
+    purgatory: {
+      name: "Purgatory", 
+      background: "/Template/Images/BG/DescisionWorld.jpg"
     },
     starry: {
       name: "Starry",
@@ -113,8 +112,9 @@ namespace VisualNovel {
     buttonFunctionalities("Close");
     let scenes: ƒS.Scenes = [
       // { scene: Intro, name: "First Scene" },
-      { scene: GifAnimator, name: "Text Scene" },
-      { scene: HowToMakeChoices, name: 'Choices' },
+      { scene: Choices, name: "DecisionNextScene" },
+      { id: "Gif", scene: GifAnimator, name: "Text Scene" },
+      // { scene: HowToMakeChoices, name: 'Choices' },
     ];
 
     // start the sequence

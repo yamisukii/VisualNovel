@@ -13,7 +13,7 @@ declare namespace VisualNovel {
         dystopian: string;
     };
     let locations: {
-        nightpark: {
+        purgatory: {
             name: string;
             background: string;
         };
@@ -65,6 +65,7 @@ declare namespace VisualNovel {
     let dataForSave: {
         nameProtaginst: string;
         score: number;
+        revengeIsPicked: boolean;
     };
     function showCredits(): void;
     let inGameMenuButtons: {
@@ -117,6 +118,9 @@ declare namespace VisualNovel {
         start(): void;
         remove(): void;
     }
+}
+declare namespace VisualNovel {
+    function Choices(): ƒS.SceneReturn;
 }
 declare namespace VisualNovel {
     function HowToMakeChoices(): ƒS.SceneReturn;

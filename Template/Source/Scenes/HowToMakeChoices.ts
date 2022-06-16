@@ -18,7 +18,7 @@ namespace VisualNovel {
     // ƒS.Sound.fade(sound.dystopian, 3, 5, true);
     // ƒS.Sound.fade(sound.nightclub, 0, 5);
     ƒS.Speech.hide();
-    await ƒS.Location.show(locations.nightpark);
+    await ƒS.Location.show(locations.nightStreets);
     await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
     await ƒS.Character.show(characters.aisaka, characters.aisaka.pose.happy, ƒS.positions.bottomcenter);
     await ƒS.Character.show(characters.aisaka, characters.aisaka.pose.happy, ƒS.positionPercent(70, 100));

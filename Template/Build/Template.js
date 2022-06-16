@@ -21,10 +21,9 @@ var VisualNovel;
         // click: "Pfad"
     };
     VisualNovel.locations = {
-        nightpark: {
-            name: "Nightpark",
-            // background: "/Template/Images/Backgrounds/starry.gif"
-            background: "/Template/Images/Backgrounds/Bedroom.png"
+        purgatory: {
+            name: "Purgatory",
+            background: "/Template/Images/BG/DescisionWorld.jpg"
         },
         starry: {
             name: "Starry",
@@ -103,8 +102,9 @@ var VisualNovel;
         VisualNovel.buttonFunctionalities("Close");
         let scenes = [
             // { scene: Intro, name: "First Scene" },
-            { scene: VisualNovel.GifAnimator, name: "Text Scene" },
-            { scene: VisualNovel.HowToMakeChoices, name: 'Choices' },
+            { scene: VisualNovel.Choices, name: "DecisionNextScene" },
+            { id: "Gif", scene: VisualNovel.GifAnimator, name: "Text Scene" },
+            // { scene: HowToMakeChoices, name: 'Choices' },
         ];
         // start the sequence
         VisualNovel.ƒS.Progress.go(scenes);
@@ -116,7 +116,8 @@ var VisualNovel;
     // **** DATEN DIE GESPEICHERT WERDEN SOLLEN ****
     VisualNovel.dataForSave = {
         nameProtaginst: "",
-        score: 0
+        score: 0,
+        revengeIsPicked: false,
     };
     // **** CREDITS ****
     function showCredits() {
@@ -264,6 +265,61 @@ var VisualNovel;
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {
+    async function Choices() {
+        console.log("Choices!");
+        let text = {
+            Speaker: {
+                T0000: "Bitte suche dir den nächsten Fall aus",
+            },
+        };
+        let pickYourNextCase = {
+            revenge: "Rachemord",
+            accident: "Unfall",
+            bullying: "Mobbing",
+            iSayBla: "Bla"
+        };
+        let pickedRevenge;
+        let pickedAccident;
+        let pickedBullying;
+        let pickedBla;
+        await VisualNovel.ƒS.Location.show(VisualNovel.locations.purgatory);
+        await VisualNovel.ƒS.update(2);
+        await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.peter, text.Speaker.T0000);
+        // if (pickedAccident || pickedBla || pickedNo || pickedRevenge || pickedAccident) {
+        //   delete pBullyingkYourNextCase..BullyingayYes;
+        // }
+        if (pickedRevenge) {
+            delete pickYourNextCase.revenge;
+        }
+        else if (pickedAccident) {
+            delete pickYourNextCase.accident;
+        }
+        else if (pickedBullying) {
+            delete pickYourNextCase.bullying;
+        }
+        else if (pickedBla) {
+            delete pickYourNextCase.iSayBla;
+        }
+        let firstDialogueElement = await VisualNovel.ƒS.Menu.getInput(pickYourNextCase, "choicesCSSclass");
+        switch (firstDialogueElement) {
+            case pickYourNextCase.revenge:
+                VisualNovel.dataForSave.revengeIsPicked = true;
+                return "Gif";
+            case pickYourNextCase.accident:
+                VisualNovel.dataForSave.revengeIsPicked = true;
+                return "Accident";
+            case pickYourNextCase.bullying:
+                VisualNovel.dataForSave.revengeIsPicked = true;
+                return "Bullying";
+            case pickYourNextCase.iSayBla:
+                VisualNovel.dataForSave.revengeIsPicked = true;
+                return "Bla";
+        }
+    }
+    VisualNovel.Choices = Choices;
+})(VisualNovel || (VisualNovel = {}));
+var VisualNovel;
+(function (VisualNovel) {
     async function HowToMakeChoices() {
         console.log("Let's make some choices!");
         let text = {
@@ -280,7 +336,7 @@ var VisualNovel;
         // ƒS.Sound.fade(sound.dystopian, 3, 5, true);
         // ƒS.Sound.fade(sound.nightclub, 0, 5);
         VisualNovel.ƒS.Speech.hide();
-        await VisualNovel.ƒS.Location.show(VisualNovel.locations.nightpark);
+        await VisualNovel.ƒS.Location.show(VisualNovel.locations.nightStreets);
         await VisualNovel.ƒS.update(VisualNovel.transitions.puzzle.duration, VisualNovel.transitions.puzzle.alpha, VisualNovel.transitions.puzzle.edge);
         await VisualNovel.ƒS.Character.show(VisualNovel.characters.aisaka, VisualNovel.characters.aisaka.pose.happy, VisualNovel.ƒS.positions.bottomcenter);
         await VisualNovel.ƒS.Character.show(VisualNovel.characters.aisaka, VisualNovel.characters.aisaka.pose.happy, VisualNovel.ƒS.positionPercent(70, 100));

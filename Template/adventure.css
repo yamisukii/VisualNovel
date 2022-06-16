@@ -16,3 +16,8 @@ p{
 #decision{
     margin-left: 5em;
 }
+
+.choicesCSSclass{
+    width: max-content;
+    height: max-content;
+}
