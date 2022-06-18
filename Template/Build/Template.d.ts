@@ -1,6 +1,29 @@
 declare namespace VisualNovel {
     export import ƒ = FudgeCore;
     export import ƒS = FudgeStory;
+    let dataForSave: {
+        nameProtaginst: string;
+        aisakaScore: number;
+        scoreForAisaka: string;
+        revengeIsPicked: boolean;
+    };
+}
+declare namespace VisualNovel {
+    let gameMenu: ƒS.Menu;
+    let menuIsOpen: boolean;
+    let inventory: ƒS.Inventory;
+    function showCredits(): void;
+    let inGameMenuButtons: {
+        save: string;
+        load: string;
+        close: string;
+        credits: string;
+    };
+    function buttonFunctionalities(_option: string): Promise<void>;
+    function hndKeyPress(_event: KeyboardEvent): Promise<void>;
+    let uiElement: HTMLElement;
+}
+declare namespace VisualNovel {
     let transitions: {
         puzzle: {
             duration: number;
@@ -17,7 +40,7 @@ declare namespace VisualNovel {
             name: string;
             background: string;
         };
-        starry: {
+        alleyEv: {
             name: string;
             background: string;
         };
@@ -57,26 +80,6 @@ declare namespace VisualNovel {
         };
     };
     let items: any;
-}
-declare namespace VisualNovel {
-    let gameMenu: ƒS.Menu;
-    let menuIsOpen: boolean;
-    let inventory: ƒS.Inventory;
-    let dataForSave: {
-        nameProtaginst: string;
-        score: number;
-        revengeIsPicked: boolean;
-    };
-    function showCredits(): void;
-    let inGameMenuButtons: {
-        save: string;
-        load: string;
-        close: string;
-        credits: string;
-    };
-    function buttonFunctionalities(_option: string): Promise<void>;
-    function hndKeyPress(_event: KeyboardEvent): Promise<void>;
-    let uiElement: HTMLElement;
 }
 declare namespace VisualNovel {
     /**
@@ -130,4 +133,7 @@ declare namespace VisualNovel {
 }
 declare namespace VisualNovel {
     function GifAnimator(): ƒS.SceneReturn;
+}
+declare namespace VisualNovel {
+    function Revenge(): ƒS.SceneReturn;
 }

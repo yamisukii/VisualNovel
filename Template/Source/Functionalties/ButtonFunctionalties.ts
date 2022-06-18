@@ -1,14 +1,7 @@
 namespace VisualNovel {
   export let gameMenu: ƒS.Menu;
   export let menuIsOpen: boolean = true;
-  export let inventory : ƒS.Inventory;
-
-  // **** DATEN DIE GESPEICHERT WERDEN SOLLEN ****
-  export let dataForSave = {
-    nameProtaginst: "",
-    score: 0,
-    revengeIsPicked: false,
-  };
+  export let inventory: ƒS.Inventory;
 
   // **** CREDITS ****
   export function showCredits(): void {
@@ -76,7 +69,6 @@ namespace VisualNovel {
         break;
     }
   }
-
   export let uiElement: HTMLElement = document.querySelector("[type=interface]");
   dataForSave = ƒS.Progress.setData(dataForSave, uiElement);
 }

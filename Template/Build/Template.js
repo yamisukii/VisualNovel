@@ -4,97 +4,12 @@ var VisualNovel;
     VisualNovel.ƒ = FudgeCore;
     VisualNovel.ƒS = FudgeStory;
     console.log("FudgeStory template starting");
-    // **** DEFINITIONEN ****
-    // define transitions
-    VisualNovel.transitions = {
-        puzzle: {
-            duration: 1,
-            alpha: "/Template/FreeTransitions/jigsaw_06.jpg",
-            edge: 1
-        }
-    };
-    VisualNovel.sound = {
-        // themes
-        nightclub: "/Template/Audio/Nightclub.ogg",
-        dystopian: "/Template/Audio/Dystopian.ogg"
-        // SFX
-        // click: "Pfad"
-    };
-    VisualNovel.locations = {
-        purgatory: {
-            name: "Purgatory",
-            background: "/Template/Images/BG/DescisionWorld.jpg"
-        },
-        starry: {
-            name: "Starry",
-            background: "/Template/Images/Backgrounds/bg_city_sunset.png"
-        },
-        nightStreets: {
-            name: "Starry",
-            background: "/Template/Images/Backgrounds/nightStreets.jpg"
-        }
-    };
-    VisualNovel.characters = {
-        narrator: {
-            name: ""
-        },
-        aisaka: {
-            name: "Aisaka",
-            origin: VisualNovel.ƒS.ORIGIN.BOTTOMCENTER,
-            pose: {
-                angry: "/Template/Images/Characters/aisaka_angry.png",
-                happy: "/Template/Images/Characters/aisaka_happy.png",
-                upset: ""
-            }
-        },
-        kohana: {
-            name: "Kohana",
-            origin: VisualNovel.ƒS.ORIGIN.BOTTOMCENTER,
-            pose: {
-                angry: "",
-                happy: "/Template/Images/Characters/kohana_happy.png",
-                upset: "/Template/Images/Characters/kohana_upset.png"
-            }
-        },
-        peter: {
-            name: "Peter",
-            origin: VisualNovel.ƒS.ORIGIN.BOTTOMCENTER,
-            pose: {
-                walk: "/Template/Images/Characters/peter.png",
-            }
-        }
-    };
-    VisualNovel.items = {
-        a: {
-            name: "DeathNote",
-            description: "Schreib nicht dein eigenen Namen rein! ",
-            image: "/Template/Images/Items/book.png",
-            // static: true
-        },
-        b: {
-            name: "DeathNote",
-            description: "Schreib nicht dein eigenen Namen rein! ",
-            image: "/Template/Images/Items/book.png",
-            static: true
-        },
-        class: {
-            name: "DeathNote",
-            description: "Schreib nicht dein eigenen Namen rein! ",
-            image: "/Template/Images/Items/book.png",
-            static: true
-        },
-        d: {
-            name: "DeathNote",
-            description: "Schreib nicht dein eigenen Namen rein! ",
-            image: "/Template/Images/Items/book.png",
-            static: true
-        },
-        e: {
-            name: "DeathNote",
-            description: "Schreib nicht dein eigenen Namen rein! ",
-            image: "/Template/Images/Items/book.png",
-            static: true
-        }
+    // **** DATEN DIE GESPEICHERT WERDEN SOLLEN ****
+    VisualNovel.dataForSave = {
+        nameProtaginst: "",
+        aisakaScore: 70,
+        scoreForAisaka: "",
+        revengeIsPicked: false,
     };
     window.addEventListener("load", start);
     function start(_event) {
@@ -103,7 +18,7 @@ var VisualNovel;
         let scenes = [
             // { scene: Intro, name: "First Scene" },
             { scene: VisualNovel.Choices, name: "DecisionNextScene" },
-            { id: "Gif", scene: VisualNovel.GifAnimator, name: "Text Scene" },
+            { id: "Revenge", scene: VisualNovel.Revenge, name: "Revenge for killed Girlfirend" },
             // { scene: HowToMakeChoices, name: 'Choices' },
         ];
         // start the sequence
@@ -113,12 +28,6 @@ var VisualNovel;
 var VisualNovel;
 (function (VisualNovel) {
     VisualNovel.menuIsOpen = true;
-    // **** DATEN DIE GESPEICHERT WERDEN SOLLEN ****
-    VisualNovel.dataForSave = {
-        nameProtaginst: "",
-        score: 0,
-        revengeIsPicked: false,
-    };
     // **** CREDITS ****
     function showCredits() {
         VisualNovel.ƒS.Text.setClass("class2");
@@ -187,6 +96,101 @@ var VisualNovel;
     VisualNovel.hndKeyPress = hndKeyPress;
     VisualNovel.uiElement = document.querySelector("[type=interface]");
     VisualNovel.dataForSave = VisualNovel.ƒS.Progress.setData(VisualNovel.dataForSave, VisualNovel.uiElement);
+})(VisualNovel || (VisualNovel = {}));
+var VisualNovel;
+(function (VisualNovel) {
+    // **** DEFINITIONEN ****
+    // define transitions
+    VisualNovel.transitions = {
+        puzzle: {
+            duration: 1,
+            alpha: "/Template/FreeTransitions/jigsaw_06.jpg",
+            edge: 1
+        }
+    };
+    VisualNovel.sound = {
+        // themes
+        nightclub: "/Template/Audio/Nightclub.ogg",
+        dystopian: "/Template/Audio/Dystopian.ogg"
+        // SFX
+        // click: "Pfad"
+    };
+    VisualNovel.locations = {
+        purgatory: {
+            name: "Purgatory",
+            background: "/Template/Images/BG/DescisionWorld.jpg"
+        },
+        alleyEv: {
+            name: "alleyEvening",
+            background: "/Template/Images/BG/alley_evening.png"
+        },
+        nightStreets: {
+            name: "Starry",
+            background: "/Template/Images/Backgrounds/nightStreets.jpg"
+        }
+    };
+    VisualNovel.characters = {
+        narrator: {
+            name: ""
+        },
+        aisaka: {
+            name: "Aisaka",
+            origin: VisualNovel.ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                angry: "/Template/Images/Characters/aisaka_angry.png",
+                happy: "/Template/Images/Characters/aisaka_happy.png",
+                upset: ""
+            }
+        },
+        kohana: {
+            name: "Kohana",
+            origin: VisualNovel.ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                angry: "",
+                happy: "/Template/Images/Characters/kohana_happy.png",
+                upset: "/Template/Images/Characters/kohana_upset.png"
+            }
+        },
+        peter: {
+            name: "Peter",
+            origin: VisualNovel.ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                walk: "/Template/Images/Characters/peter.png",
+            }
+        }
+    };
+    VisualNovel.items = {
+        a: {
+            name: "DeathNote",
+            description: "Schreib nicht dein eigenen Namen rein! ",
+            image: "/Template/Images/Items/book.png",
+            // static: true
+        },
+        b: {
+            name: "DeathNote",
+            description: "Schreib nicht dein eigenen Namen rein! ",
+            image: "/Template/Images/Items/book.png",
+            static: true
+        },
+        class: {
+            name: "DeathNote",
+            description: "Schreib nicht dein eigenen Namen rein! ",
+            image: "/Template/Images/Items/book.png",
+            static: true
+        },
+        d: {
+            name: "DeathNote",
+            description: "Schreib nicht dein eigenen Namen rein! ",
+            image: "/Template/Images/Items/book.png",
+            static: true
+        },
+        e: {
+            name: "DeathNote",
+            description: "Schreib nicht dein eigenen Namen rein! ",
+            image: "/Template/Images/Items/book.png",
+            static: true
+        }
+    };
 })(VisualNovel || (VisualNovel = {}));
 var VisualNovel;
 (function (VisualNovel) {
@@ -304,7 +308,9 @@ var VisualNovel;
         switch (firstDialogueElement) {
             case pickYourNextCase.revenge:
                 VisualNovel.dataForSave.revengeIsPicked = true;
-                return "Gif";
+                VisualNovel.dataForSave.aisakaScore -= 30;
+                console.log(VisualNovel.dataForSave.aisakaScore);
+                return "Revenge";
             case pickYourNextCase.accident:
                 VisualNovel.dataForSave.revengeIsPicked = true;
                 return "Accident";
@@ -419,5 +425,44 @@ var VisualNovel;
         video.remove();
     }
     VisualNovel.GifAnimator = GifAnimator;
+})(VisualNovel || (VisualNovel = {}));
+var VisualNovel;
+(function (VisualNovel) {
+    async function Revenge() {
+        console.log("Let's text!");
+        let text = {
+            Friend: {
+                T0000: "",
+                T0001: "",
+                T0002: ""
+            },
+            Jay: {
+                T0000: "Baka!!",
+                T0001: "Kleiner Scherz, willkommen zum Tutorial!"
+            }
+        };
+        // ƒS.Sound.fade(sound.dystopian, 2, 7, true);
+        VisualNovel.ƒS.Speech.hide();
+        for (let i = 0; i < 6; i++) {
+            VisualNovel.ƒS.Inventory.add(VisualNovel.items.a);
+        }
+        console.log();
+        // let meterbar:any = document.getElementById("aisakaMeter");
+        // meterbar.value = 10;
+        VisualNovel.dataForSave.aisakaScore += 10;
+        console.log(VisualNovel.dataForSave.aisakaScore);
+        await VisualNovel.ƒS.Location.show(VisualNovel.locations.alleyEv);
+        await VisualNovel.ƒS.update(VisualNovel.transitions.puzzle.duration, VisualNovel.transitions.puzzle.alpha, VisualNovel.transitions.puzzle.edge);
+        await VisualNovel.ƒS.Character.show(VisualNovel.characters.peter, VisualNovel.characters.peter.pose.walk, VisualNovel.ƒS.positionPercent(60, 160));
+        // await ƒS.Character.
+        await VisualNovel.ƒS.update(2);
+        // await ƒS.Character.show(characters.Peter, characters.Peter.pose.happy, ƒS.positionPercent(170, 10));
+        VisualNovel.ƒS.Character.hide(VisualNovel.characters.peter);
+        // ƒS.Character.hideAll();
+        await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.peter, text.Jay.T0000);
+        await VisualNovel.ƒS.Speech.tell(VisualNovel.characters.peter, text.Jay.T0001);
+        VisualNovel.ƒS.Speech.hide();
+    }
+    VisualNovel.Revenge = Revenge;
 })(VisualNovel || (VisualNovel = {}));
 //# sourceMappingURL=Template.js.map

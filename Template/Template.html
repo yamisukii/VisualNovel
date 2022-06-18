@@ -7,11 +7,11 @@
   <link rel="stylesheet" href="Template.css">
   <!-- <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
   <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />  -->
-  
+
   <script src="Fudge/FudgeCore.js"></script>
   <script src="FudgeStory/FudgeStory.js"></script>
   <script src="./Build/Template.js"></script>
-  <script  src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   <title>Gamename</title>
   <splash src="Images/Splash.png" />
 </head>
@@ -26,7 +26,7 @@
       </p>
     </dialog>
 
-    <canvas id="screen" ></canvas>
+    <canvas id="screen"></canvas>
 
 
     <speech>
@@ -34,15 +34,18 @@
       <content></content>
     </speech>
 
-    <dialog type="inventory" >
+    <dialog type="inventory">
       <button type="button" class="nes-btn is-warning">Close</button>
       <ul></ul>
     </dialog>
 
-    <dialog type="text">
-      The content of a page of text for reading
-    </dialog>
+    <div type="interface">
+      <input id="scoreForAisaka" type="text" value="hund" disabled>
+      <!-- für value der Skala; Füllung -->
+      <meter id="aisakaMeter" name="aisakaScore" min="0" max="100" disabled></meter>
+    </div>
 
   </scene>
 </body>
+
 </html>
